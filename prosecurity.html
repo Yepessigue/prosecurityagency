@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pro Security</title>
+    <!-- Inclusion de Bootstrap -->
+    <link rel="stylesheet" href="styles.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+
+<style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f8f9fa;
+      color: #333;
+    }
+
+    /* HEADER */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #c9a227;
+      padding: 10px 20px;
+      color: white;
+    }
+    header img {
+      height: 100px;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 20px;
+    }
+
+    /* MENU BOUTONS */
+    .btn-container {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin: 20px 0;
+      flex-wrap: wrap;
+    }
+    .btn-section {
+      padding: 10px 25px;
+      border: none;
+      border-radius: 8px;
+      background: #c9a227;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .btn-section:hover {
+      background: #ffcc00;
+      transform: scale(1.05);
+    }
+
+    /* SECTIONS */
+    .section {
+      display: none;
+      max-width: 1000px;
+      margin: 0 auto 30px;
+      background: white;
+      padding: 25px 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      line-height: 1.6;
+    }
+    .section.active {
+      display: block;
+    }
+
+    /* TITRES SECTIONS */
+    .section h2 {
+      color: #c9a227;
+      margin-top: 0;
+    }
+
+    @media (max-width: 768px) {
+      .btn-container {
+        flex-direction: column;
+        align-items: center;
+      }
+      header {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+  </style>
+
+</head>
+<body>
+    <style>
+        .scrolling-icons {
+            overflow: hidden;
+            white-space: nowrap;
+        }
+    
+        .scrolling-icons img {
+            display: inline-block;
+            height: 40px;
+            margin-right: 20px; /* Espacement entre les icônes */
+        }
+    
+        @keyframes scroll {
+            0% {
+                transform: translateX(100%); 
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+    
+        .scroll-container {
+            display: inline-block;
+            animation: scroll 20s linear infinite;
+        }
+    </style>
+    
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCategories" aria-controls="offcanvasCategories">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+    
+            <!-- Bande d'annonce des icônes avec défilement -->
+            <div class="scrolling-icons" style="flex-grow: 1;">
+                <div class="scroll-container">
+                    <img src="images/elect.png" alt="Icone 1">
+                    <img src="images/clothes.png" alt="Icone 2">
+                    <img src="icone3.png" alt="Icone 3">
+                    <img src="icone4.png" alt="Icone 4">
+                    <img src="icone5.png" alt="Icone 5">
+                    <img src="icone6.png" alt="Icone 6">
+                    <img src="icone7.png" alt="Icone 7">
+                    <img src="icone8.png" alt="Icone 8">
+                    <!-- Répéter les icônes pour un défilement continu -->
+                    <img src="icone1.png" alt="Icone 1">
+                    <img src="icone2.png" alt="Icone 2">
+                    <img src="icone3.png" alt="Icone 3">
+                    <img src="icone4.png" alt="Icone 4">
+                    <img src="icone5.png" alt="Icone 5">
+                    <img src="icone6.png" alt="Icone 6">
+                    <img src="icone7.png" alt="Icone 7">
+                    <img src="icone8.png" alt="Icone 8">
+                    
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+
+    <!-- Header Navbar -->
+    <header>
+        <!-- Top Section -->
+        <div class="container-fluid bg-light py-2">
+            <div class="row align-items-center">
+                <div class="col-lg-2 col-md-4 col-sm-6" style="height: 60px;">
+                    <a href="index.html" class="navbar-brand">
+                        <img src="proimage/logo.jpg" alt="prosecurityagency" width="150" height="20">
+                    </a>
+                </div>
+
+            </div>
+
+           
+            <!-- Categories Section (smaller) -->
+            <div class="container-fluid bg-white border-top py-1 mt-2" id="hide_on_mobile">
+                <div class="row">
+                    <div class="col-lg-12 d-flex justify-content-center">
+                        
+    <!-- Menu Offcanvas pour les catégories (version mobile) -->
+<div class="dropdown me-3">
+    <button class="btn btn-outline-dark btn-sm dropdown-toggle"
+            type="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false">
+        ☰ Catégories
+    </button>
+    <ul class="dropdown-menu">
+    <li><a class="dropdown-item" href="#">Contrôle accès</a></li>
+    <li><a class="dropdown-item" href="#">Vidéo surveillance</a></li>
+    <li><a class="dropdown-item" href="#">Alarme intrusion</a></li>
+    <li><a class="dropdown-item" href="#">Sécurité incendie</a></li>
+    <li><a class="dropdown-item" href="#">Sécurité mobile</a></li>
+    <li><a class="dropdown-item" href="#">Services</a></li>
+</ul>
+</div>
+
+                       <ul class="nav">
+                            
+                            <li class="nav-item">  
+                                <a class="nav-link text-dark small" href="index.html">Systeme d'intrusion</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark small" href="index.html">Projets Informatique</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark small" href="">Formation Informatique </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark small" href="index.html">Systeme gestion etudiant </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark small" href="index.html">Les Automates</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark small" href="index.html">Les Serrures</a>
+                            </li>  
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+  <!-- BOUTONS MENU -->
+  <div class="btn-container">
+    <button class="btn-section" onclick="showSection('vente')">Vente & Garantie</button>
+    <button class="btn-section" onclick="showSection('securite')">Sécurité & Rapidité</button>
+    <button class="btn-section" onclick="showSection('livraison')">Livraison & Historique</button>
+    <button class="btn-section" onclick="showSection('retour')">Retour & Changement</button>
+  </div>
+
+  <!-- SECTIONS -->
+<section id="bizkimiz">
+  <div id="vente" class="section active">
+    <h2>Conditions de Vente & Garantie</h2>
+    <p>
+      Les présentes conditions générales de vente régissent l’ensemble des relations commerciales entre <strong>Pro Security Agency</strong> et ses clients. Toute commande passée auprès de notre entreprise implique l’acceptation pleine et entière des présentes conditions, sans réserve.
+    </p>
+    <p>
+      <strong>Pro Security Agency</strong> s’engage à proposer des solutions et services de sécurité électronique répondant aux standards de qualité les plus élevés, avec une information claire et transparente concernant les caractéristiques, les prix et les modalités de réalisation. Les tarifs sont exprimés en monnaie locale et peuvent être ajustés selon la complexité des projets, les demandes personnalisées ou les contraintes logistiques liées à l’installation et à la mise en service.
+    </p>
+    <p>
+      La commande devient définitive après validation par le client et confirmation officielle par <strong>Pro Security Agency</strong>. Selon la nature du projet, un acompte peut être demandé afin de lancer l’installation ou la configuration des systèmes de sécurité. Les délais de réalisation et de mise en service sont communiqués à titre indicatif et sont optimisés pour garantir une exécution rapide, professionnelle et conforme aux engagements pris.
+    </p>
+    <p>
+      <strong>Pro Security Agency</strong> se réserve le droit d’apporter toute amélioration technique nécessaire à la qualité finale des systèmes installés, sans altérer leurs fonctionnalités essentielles ni les attentes exprimées par le client. Notre priorité est d’offrir à chaque partenaire une expérience sécurisée, transparente et orientée vers la satisfaction durable, en mettant l’accent sur la fiabilité, la qualité et le respect des engagements.
+    </p>
+    <h3>Garantie</h3>
+    <p>
+      Chez <strong>Pro Security Agency</strong>, la qualité constitue un engagement fondamental. Tous nos équipements et systèmes sont conçus et sélectionnés selon des standards rigoureux afin d’offrir des solutions durables et conformes aux exigences professionnelles.  
+      Nos installations bénéficient d’une garantie couvrant tout défaut de fabrication ou de fonctionnement constaté après mise en service, sous réserve d’une utilisation normale et conforme aux recommandations fournies. En cas de défaut reconnu, <strong>Pro Security Agency</strong> s’engage à procéder à la réparation, au remplacement ou à toute solution appropriée visant à garantir la satisfaction du client.  
+      Cette garantie ne couvre pas les dommages résultant d’une mauvaise utilisation, d’une modification effectuée par un tiers, d’un entretien inadéquat ou de tout événement indépendant de notre responsabilité.
+    </p>
+  </div>
+
+  <div id="securite" class="section">
+    <h2>Sécurité, Confiance & Efficacité</h2>
+    <p>
+      Chez <strong>Pro Security Agency</strong>, la confiance de nos clients est une priorité. Nous mettons en place des procédures rigoureuses afin de garantir la sécurité des installations, la confidentialité des informations sensibles et la fiabilité de chaque étape du projet.
+    </p>
+    <p>
+      Toutes les informations communiquées par nos clients sont traitées avec la plus grande confidentialité et utilisées exclusivement dans le cadre de la mise en œuvre des systèmes de sécurité et du suivi des interventions. <strong>Pro Security Agency</strong> s’engage à ne transmettre aucune donnée à des tiers sans autorisation préalable, sauf dans les cas strictement nécessaires au traitement technique ou aux obligations légales.
+    </p>
+    <p>
+      Notre organisation interne repose sur des standards professionnels visant à assurer la transparence, la traçabilité des installations et le respect des engagements pris. Cette démarche nous permet d’offrir à nos clients un environnement sûr, fiable et orienté vers une relation de confiance durable.
+    </p>
+
+    <h3>Efficacité & Rapidité</h3>
+    <p>
+      <strong>Pro Security Agency</strong> accorde une importance particulière à la réactivité et à la qualité d’exécution de chaque projet de sécurité. Grâce à une organisation professionnelle, une équipe expérimentée et un suivi rigoureux des interventions, nous assurons un traitement rapide et efficace, depuis la validation de la demande jusqu’à la mise en service complète des systèmes.
+    </p>
+    <p>
+      Chaque projet fait l’objet d’un suivi précis afin de garantir le respect des délais annoncés et la conformité des installations aux attentes du client. Nos processus sont optimisés pour réduire les délais tout en maintenant un niveau de qualité élevé.
+    </p>
+    <p>
+      Cette approche nous permet d’offrir à nos clients un service fiable, rapide et professionnel, en mettant l’accent sur la satisfaction, la transparence et le respect des engagements pris à chaque étape de la collaboration.
+    </p>
+  </div>
+
+  <div id="livraison" class="section">
+    <h2>Livraison & Installation</h2>
+    <p>
+      Chaque installation est traitée comme un projet de valeur. Nos solutions sont pensées pour garantir sécurité, qualité et tranquillité d’esprit, depuis la livraison des équipements jusqu’à la mise en service complète des systèmes.
+    </p>
+    <p>
+      <strong>Pro Security Agency</strong> propose :
+      <ul>
+        <li><span>Transport sécurisé :</span> emballage professionnel et protection renforcée des équipements</li>
+        <li><span>Délais maîtrisés :</span> information claire sur les temps d’installation</li>
+        <li><span>Installation locale :</span> réalisation par nos équipes qualifiées</li>
+        <li><span>Accompagnement personnalisé :</span> suivi et formation des utilisateurs</li>
+      </ul>
+    </p>
+    <p>
+      Choisir <strong>Pro Security Agency</strong>, c’est choisir la tranquillité, la fiabilité et le respect de votre investissement.
+    </p>
+  </div>
+
+  <div id="retour" class="section">
+    <h2>Retour & Changement</h2>
+    <p>
+      Chez <strong>Pro Security Agency</strong>, la satisfaction de nos clients est essentielle. Chaque système installé est testé et vérifié afin de garantir une performance optimale dès la mise en service.  
+      Si un équipement présente un défaut ou ne correspond pas aux attentes, un retour ou remplacement peut être envisagé dans des conditions précises. Les systèmes doivent être intacts et ne pas avoir subi de modification par des tiers.
+    </p>
+    <p>
+      Les demandes de changement doivent être effectuées dans un délai de 7 jours après la mise en service. Les systèmes personnalisés ou configurés selon les besoins spécifiques du client ne peuvent être retournés en raison de leur caractère unique.  
+      <strong>Pro Security Agency</strong> privilégie le dialogue et l’accompagnement pour proposer des solutions adaptées, en toute transparence et professionnalisme.
+    </p>
+  </div>
+</section>
+  
+ 
+<footer class="footer">
+  <div class="footer-container">
+
+    <div class="footer-column">
+      <h3>Pro Security Agency</h3>
+      <p>Pro Security Agency propose des solutions complètes de sécurité électronique et contrôle d’accès adaptées aux entreprises, industries et...</p>
+     
+    </div>
+
+    <div class="footer-column">
+  <h3>Autres Services</h3>
+  <ul>
+    <li>Contrôle d’accès</li>
+    <li>Vidéo surveillance</li>
+    <li>Alarme intrusion</li>
+    <li>Sécurité incendie</li>
+    <li>Sécurité mobile</li>
+    <li>Maintenance & Installation</li>
+  </ul>
+</div>
+
+    <div class="footer-column">
+      <h3>Nos Réalisations</h3>
+      <ul>       
+      </ul>
+    </div>
+
+    <div class="footer-column">
+      <h3>À propos</h3>
+      <ul>
+        <a href="prosecurity.html"> <li>Qui sommes-nous ?</li></a>
+        <li>Notre équipe</li>
+        <li>Nos partenaires</li>
+        <li>Carrières</li>
+        
+      </ul>
+    </div>
+
+    <div class="footer-column">
+      <h3>Contact</h3>
+      <ul>
+        <li>Adresse: 04 BP 852, Lomé, Togo</li>
+        <li>Téléphone: +228 90 99 93 93</li>
+        <li>Email: contact@prosecurityagency.shop</li>
+        
+      </ul>
+    </div>
+
+    <div class="footer-column">
+      <h3>Suivez-nous</h3>
+      <ul>
+        <li>Facebook</li>
+        <li>Instagram</li>
+        <li>LinkedIn</li>
+        <li>Pinterest</li>
+      </ul>
+    </div>
+
+  </div>
+<div class="designer">
+  <div class="designer-track">
+    © designed by LunaLite Software Ltd
+  </div>
+</div>
+</footer>
+
+
+</body>
+<script>
+    function showSection(id) {
+      // cacher toutes les sections
+      const sections = document.querySelectorAll('.section');
+      sections.forEach(sec => sec.classList.remove('active'));
+
+      // afficher la section choisie
+      const section = document.getElementById(id);
+      section.classList.add('active');
+
+      // faire défiler vers le haut de la section
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  </script>
+
+  <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+ 
+
+</body>
+
+</html>
